@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>School Management System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Navbar Styling */
+    nav {
+      background-color: #4CAF50;
+      padding: 0;
+      margin-bottom: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 18px 25px;
+      display: block;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      background-color: #45a049;
+      border-bottom: 3px solid #fff;
+    }
+
+    nav a.active {
+      background-color: #3d8b40;
+      border-bottom: 3px solid #fff;
+    }
+
+    .content-wrapper {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'student' %}">Students</a></li>
+      <li><a href="{% url 'feedback' %}">Feedback</a></li>
+    </ul>
+  </nav>
+
+  <div class="content-wrapper">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+</body>
+
+</html>

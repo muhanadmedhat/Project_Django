@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .content-wrapper {
+    background: #f4f6f9;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .home-container {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+  }
+
+  h1 {
+    color: #4CAF50;
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  p {
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .home-intro {
+    margin-top: 30px;
+    color: #999;
+    font-size: 14px;
+    border-top: 2px solid #e0e0e0;
+    padding-top: 20px;
+  }
+</style>
+
+<div class="home-container">
+  <h1>Hello ITI</h1>
+  <p>Welcome to School Management System</p>
+  <div class="home-intro">
+    <p>Navigate using the menu above to manage students and feedback</p>
+  </div>
+</div>
+{% endblock %}
