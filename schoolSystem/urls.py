@@ -24,8 +24,11 @@ from core.views import home
 urlpatterns = [
     path('', home,name="home"),
     path('admin/', admin.site.urls),
+    path('users/',    include('users.urls')),
     path('students/', include('students.urls')),
-    path('feedback/', include('feedback.urls'))
+    path('feedback/', include('feedback.urls')),
+    path('subjects/', include('subjects.urls')),
+    path('grades/' , include('grades.urls'))
 ]
 
 if settings.DEBUG:

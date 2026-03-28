@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from students.views import deleteStudent, student
+from students.views import deleteStudent, student , updateStudent
 
 urlpatterns = [
     path('',student,name="student"),
-    path('delete/<int:id>/',deleteStudent , name='deleteStudent')
+    path('delete/<int:id>/', deleteStudent , name='deleteStudent'),
+    path('update/<int:id>/', updateStudent , name="updateStudent")
 ]

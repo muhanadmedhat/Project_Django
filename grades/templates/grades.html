@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container">
+  <h1>Grades</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label>Student</label>
+      {{ form.student }}
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      {{ form.subject }}
+    </div>
+    <div class="form-group">
+      <label>Degree</label>
+      {{ form.degree }}
+    </div>
+    <button type="submit">+ Add Grade</button>
+  </form>
+
+  <hr>
+
+  <h2>All Grades</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Student</th>
+        <th>Subject</th>
+        <th>Degree</th>
+        <th colspan="2" style="text-align:center;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for grade in grades %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ grade.student.name }}</td>
+        <td>{{ grade.subject.name }}</td>
+        <td>{{ grade.degree }}</td>
+        <td>
+          <form method="POST" action="{% url 'deleteGrade' grade.id %}">
+            {% csrf_token %}
+            <button class="delete-btn">Delete</button>
+          </form>
+        </td>
+        <td>
+          <a href="{% url 'updateGrade' grade.id %}"><button>Edit</button></a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6" style="text-align:center; color:#999; padding:20px;">
+          No grades yet
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

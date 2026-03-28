@@ -1,8 +1,9 @@
 from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from feedback.models import Feedback
 
 # Create your views here.
+@login_required 
 def feedback(request):
   if(request.method == 'POST'):
     email = request.POST.get("email")

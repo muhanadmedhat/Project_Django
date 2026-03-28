@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
-
 from students.models import Student
-
+from django.contrib.auth.decorators import login_required
+from .forms import StudentForm
 # Create your views here.
+
+@login_required 
 def student(request):
   if(request.method == "POST"):
     name = request.POST.get("name")
@@ -13,9 +15,27 @@ def student(request):
   students = Student.objects.all()
   context = {'all_students': students} 
   return render(request, "students.html", {'all_students': students})
-
+ 
+@login_required  
 def deleteStudent(request,id):
   student = Student.objects.get(id=id)
   student.delete()
   students = Student.objects.all()
   return redirect("student")
+
+@login_required  
+def updateStudent(request,id):
+  if request.method == "POST":
+    studentData = Student.objects.filter(id=id).first()
+    form = StudentForm(request.POST,request.FILES,instance=studentData)
+    if form.is_valid():
+      form.save()
+      return redirect("student")
+    else:
+      form = StudentForm(instance=studentData)
+      return render(request , "form.html" , {"form":form})
+  studentData = Student.objects.filter(id=id).first()
+  form = StudentForm(instance=studentData)
+  return render(request, "form.html", {"form": form})
+  
+  
